@@ -411,19 +411,33 @@ export default {
     },
 
     async upload({ encryptedFileChunks, fileName, fileType, fileSize }) {
-      for (let i = 0; i < encryptedFileChunks.length; i++) {
-        const data = JSON.stringify(encryptedFileChunks[i]); // not working if the size is large
-        const blob = new Blob([data], { type: fileType });
+      for (let i = 0; i < this.totalChunks; i++) {
+        let data = [`{"seed":${encryptedFileChunks[i].seed},"data":{"nonce":[${encryptedFileChunks[i].data.nonce}],"box":[`]
+        for(let k = 0 ; k < encryptedFileChunks[i].data.box.length; k++) {
+          if(k === 0) {
+            data.push(encryptedFileChunks[i].data.box[k])
+          }
+          else {
+            data.push("," + encryptedFileChunks[i].data.box[k])
+          }
+        }
+        data.push("]}}")
+        const blob = new Blob(data, { type: fileType });
 
-        // UPLOAD TO PINATA API
-        const result = await uploadFile({
-          title: fileName,
-          type: fileType,
-          size: fileSize,
-          file: blob
-        });
-        const link = await getFileUrl(result.IpfsHash);
-        this.links.push(link);
+        try {
+          const result = await uploadFile({
+            title: fileName,
+            type: fileType,
+            size: fileSize,
+            file: blob
+          });
+
+          const link = await getFileUrl(result.IpfsHash);
+          this.links.push(link);
+        } catch (error) {
+          console.error("Error on chunk upload", error);
+          this.isFailed = true; // Set isFailed to true if the upload fails for any chunk
+        }
       }
     },
 

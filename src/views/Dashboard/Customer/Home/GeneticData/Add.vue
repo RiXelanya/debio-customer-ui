@@ -406,8 +406,6 @@ export default {
           }
           data.push("]}}")
           const blob = new Blob(data, { type: fileType });
-          console.log(`data to be uploaded is`)
-          console.log(blob)
 
           try {
             const result = await uploadFile({
