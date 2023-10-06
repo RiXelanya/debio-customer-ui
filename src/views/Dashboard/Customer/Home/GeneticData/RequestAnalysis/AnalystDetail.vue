@@ -121,6 +121,7 @@ import { downloadFile, uploadFile, getFileUrl } from "@/common/lib/pinata-proxy"
 // import SpinnerLoader from "@bit/joshk.vue-spinners-css.spinner-loader"
 import UploadingDialog from "@/common/components/Dialog/UploadingDialog";
 import { formatUSDTE } from "@/common/lib/price-format.js";
+import store from "@/store";
 
 export default {
   name: "AnalystDetail",
@@ -411,7 +412,8 @@ export default {
     },
 
     async upload({ encryptedFileChunks, fileName, fileType, fileSize }) {
-      for (let i = 0; i < this.totalChunks; i++) {
+      for (let i = 0; i < encryptedFileChunks.length; i++) {
+        store.dispatch("geneticData/getLoadingProgress", { upload: 0 })
         let data = [`{"seed":${encryptedFileChunks[i].seed},"data":{"nonce":[${encryptedFileChunks[i].data.nonce}],"box":[`]
         for(let k = 0 ; k < encryptedFileChunks[i].data.box.length; k++) {
           if(k === 0) {
