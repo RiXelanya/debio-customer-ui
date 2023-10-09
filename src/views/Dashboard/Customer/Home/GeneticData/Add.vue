@@ -395,15 +395,7 @@ export default {
 
         for (let i = 0; i < this.totalChunks; i++) {
           store.dispatch("geneticData/getLoadingProgress", { upload: 0 })
-          let data = [`{"seed":${encryptedFileChunks[i].seed},"data":{"nonce":[${encryptedFileChunks[i].data.nonce}],"box":[`]
-          for(let k = 0 ; k < encryptedFileChunks[i].data.box.length; k++) {
-            if(k === 0) {
-              data.push(encryptedFileChunks[i].data.box[k])
-            }
-            else {
-              data.push("," + encryptedFileChunks[i].data.box[k])
-            }
-          }
+          let data = [`{"seed":${encryptedFileChunks[i].seed},"data":{"nonce":[${encryptedFileChunks[i].data.nonce}],"box":[${encryptedFileChunks[i].data.box}`]
           data.push("]}}")
           const blob = new Blob(data, { type: fileType });
 
