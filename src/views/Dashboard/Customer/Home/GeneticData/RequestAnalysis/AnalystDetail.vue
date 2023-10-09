@@ -276,8 +276,8 @@ export default {
       let uploadedLinks = 0;
       try{
         for (let i = 0; i < links.length; i++) {
-          this.totalChunks = i + links.length;
-          this.currentChunkIndex = i + 1;
+          this.totalChunks = links.length;
+          this.currentChunkIndex = i;
           const { name, type, data } = await downloadFile(links[i], true);
           const fileType = type;
           const fileName = name;
