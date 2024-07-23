@@ -122,6 +122,7 @@ import { downloadFile, uploadFile, getFileUrl } from "@/common/lib/pinata-proxy"
 import UploadingDialog from "@/common/components/Dialog/UploadingDialog";
 import { formatUSDTE } from "@/common/lib/price-format.js";
 import store from "@/store";
+import Web3 from 'web3';
 
 export default {
   name: "AnalystDetail",
@@ -166,7 +167,6 @@ export default {
       api: (state) => state.substrate.api,
       wallet: (state) => state.substrate.wallet,
       walletBalance: (state) => state.substrate.walletBalance,
-      web3: (state) => state.metamask.web3,
       mnemonicData: (state) => state.substrate.mnemonicData,
       lastEventData: (state) => state.substrate.lastEventData,
       selectedGeneticData: (state) => state.geneticData.selectedData,
@@ -227,7 +227,7 @@ export default {
         this.geneticLink
       );
       this.txWeight = `${Number(
-        this.web3.utils.fromWei(String(txWeight.partialFee), "ether")
+        Web3.utils.fromWei(String(txWeight.partialFee), "ether")
       ).toFixed(4)} DBIO`;
     },
 
@@ -437,7 +437,7 @@ export default {
     formatBalance(balance, currency) {
       let unit;
       currency === "USDT" || currency === "USDT.e" ? (unit = "mwei") : (unit = "ether");
-      const formatedBalance = this.web3.utils.fromWei(
+      const formatedBalance = Web3.utils.fromWei(
         String(balance.replaceAll(",", "")),
         unit
       );

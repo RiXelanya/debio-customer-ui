@@ -182,7 +182,6 @@ export default {
     ...mapState({
       api: (state) => state.substrate.api,
       pair: (state) => state.substrate.wallet,
-      web3: (state) => state.metamask.web3,
       lastEventData: (state) => state.substrate.lastEventData,
       mnemonicData: (state) => state.substrate.mnemonicData,
       polkadotWallet: (state) => state.substrate.polkadotWallet

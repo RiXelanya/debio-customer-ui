@@ -41,6 +41,7 @@
 import { mapState } from "vuex"
 import { queryGeneticAnalysisOrderById, queryGeneticAnalystByAccountId, queryGeneticAnalystServicesByHashId} from "@debionetwork/polkadot-provider"
 import { formatUSDTE } from "@/common/lib/price-format.js"
+import Web3 from "web3"
 
 export default {
   name: "ServiceAnalysisCard",
@@ -67,7 +68,6 @@ export default {
   computed: {
     ...mapState({
       api: (state) => state.substrate.api,
-      web3: (state) => state.metamask.web3
     }),
 
     computeDescription() {
@@ -109,7 +109,7 @@ export default {
     formatBalance(balance, currency) {
       let unit
       currency === "USDT" || currency === "USDT.e" ? unit = "mwei" : unit = "ether"
-      const formatedBalance = this.web3.utils.fromWei(String(balance.replaceAll(",", "")), unit)
+      const formatedBalance = Web3.utils.fromWei(String(balance.replaceAll(",", "")), unit)
       return Number(formatedBalance).toLocaleString("en-US")
     },
 
