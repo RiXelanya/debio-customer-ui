@@ -130,7 +130,7 @@ export default {
     ...mapState({
       api: (state) => state.substrate.api,
       rating: (state) => state.rating.rate,
-      lastEventData: (state) => state.substrate.lastEventData,
+      lastEventData: (state) => state.substrate.lastEventData
     }),
 
     computeProviderName() {

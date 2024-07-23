@@ -245,7 +245,7 @@ export default {
       wallet: (state) => state.substrate.wallet,
       lastEventData: (state) => state.substrate.lastEventData,
       mnemonicData: (state) => state.substrate.mnemonicData,
-      stakingId: (state) => state.lab.stakingId,
+      stakingId: (state) => state.lab.stakingId
     }),
 
     userAddress() {

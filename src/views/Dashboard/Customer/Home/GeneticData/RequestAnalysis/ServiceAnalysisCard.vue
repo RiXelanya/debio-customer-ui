@@ -67,7 +67,7 @@ export default {
 
   computed: {
     ...mapState({
-api: (state) => state.substrate.api
+      api: (state) => state.substrate.api
     }),
 
     computeDescription() {

@@ -74,7 +74,7 @@ import {
   queryGeneticAnalystByAccountId, 
   queryGeneticAnalystQualificationsByHashId } from "@debionetwork/polkadot-provider"
 import ImportantDialog from "./Information.vue"
-import Web3 from 'web3'
+import Web3 from "web3"
 
 export default {
   name: "SelectServiceAnalyst",

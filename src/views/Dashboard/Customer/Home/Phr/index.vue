@@ -188,7 +188,7 @@ export default {
       wallet: (state) => state.substrate.wallet,
       mnemonicData: (state) => state.substrate.mnemonicData,
       lastEventData: (state) => state.substrate.lastEventData,
-      loadingData: (state) => state.auth.loadingData,
+      loadingData: (state) => state.auth.loadingData
     })
   },
 
