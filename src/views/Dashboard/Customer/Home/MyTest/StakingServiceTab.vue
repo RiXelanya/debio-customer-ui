@@ -7,7 +7,7 @@
     )
       template(v-slot:[`item.id`]="{ item }")
         .customer-staking-tab__id
-          div {{ "N/A" }}
+          div {{ formatId(item.request.hash) }}
 
       template(v-slot:[`item.country`]="{ item }")
         .customer-staking-tab__country

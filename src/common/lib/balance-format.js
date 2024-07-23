@@ -6,5 +6,5 @@ export async function fromEther(balance) {
 }
 
 export async function toEther(balance) {
-  return web3.utils.toWei(String(balance), "ether")
+  return Web3.utils.toWei(String(balance), "ether")
 }
