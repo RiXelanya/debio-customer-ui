@@ -67,7 +67,7 @@ export default {
 
   computed: {
     ...mapState({
-      api: (state) => state.substrate.api,
+api: (state) => state.substrate.api
     }),
 
     computeDescription() {
@@ -94,11 +94,11 @@ export default {
     this.description = this.service.description
     this.duration = this.service.duration
     this.durationType = this.service.durationType
-    this.price = `${this.formatBalance(this.service.priceDetail[0].totalPrice, formatUSDTE(this.service.priceDetail[0].currency))} ${formatUSDTE(this.service.priceDetail[0].currency)}`
     this.analystName = `${this.service.analystsInfo.info.firstName} ${this.service.analystsInfo.info.lastName}`
     this.specialization = this.service.analystsInfo.info.specialization
     this.profileImage = this.service.analystsInfo.info.profileImage
     this.profileLink = this.service.analystsInfo.info.profileLink
+    this.price = `${this.formatBalance(this.service.priceDetail[0].totalPrice, formatUSDTE(this.service.priceDetail[0].currency))} ${formatUSDTE(this.service.priceDetail[0].currency)}`
   },
 
   methods: {
@@ -114,7 +114,9 @@ export default {
     },
 
     async getServiceDetail ()  {
+      console.log("Starting query 1")
       this.geneticOrderDetail = await queryGeneticAnalysisOrderById(this.api, this.orderId)
+      console.log("query 1 finished")
       
       const serviceDetail = await queryGeneticAnalystServicesByHashId(this.api, this.geneticOrderDetail.serviceId)
 
@@ -132,8 +134,9 @@ export default {
           testResultSample
         }     
       } = serviceDetail
-
-      const analystsInfo = await queryGeneticAnalystByAccountId(this.api, analystId)
+      console.log("Getting analyst info")
+      const analystsInfo = this.service.analystsInfo ? this.service.analystsInfo : await queryGeneticAnalystByAccountId(this.api, analystId)
+      console.log("Profile image is", analystsInfo.info.profileImage)
       const service = {
         serviceId,
         analystId,
@@ -150,11 +153,11 @@ export default {
       this.description = service.description
       this.duration = service.duration
       this.durationType = service.durationType
-      this.price = `${this.formatBalance(service.priceDetail[0].totalPrice, formatUSDTE(service.priceDetail[0].currency))} ${formatUSDTE(service.priceDetail[0].currency)}`
       this.analystName = `${service.analystsInfo.info.firstName} ${service.analystsInfo.info.lastName}`
       this.specialization = service.analystsInfo.info.specialization
       this.profileImage = service.analystsInfo.info.profileImage
       this.profileLink = service.analystsInfo.info.profileLink
+      this.price = `${this.formatBalance(service.priceDetail[0].totalPrice, formatUSDTE(service.priceDetail[0].currency))} ${formatUSDTE(service.priceDetail[0].currency)}`
 
     }
   }

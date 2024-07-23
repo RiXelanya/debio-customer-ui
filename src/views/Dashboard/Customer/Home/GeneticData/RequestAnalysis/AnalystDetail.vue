@@ -122,7 +122,7 @@ import { downloadFile, uploadFile, getFileUrl } from "@/common/lib/pinata-proxy"
 import UploadingDialog from "@/common/components/Dialog/UploadingDialog";
 import { formatUSDTE } from "@/common/lib/price-format.js";
 import store from "@/store";
-import Web3 from 'web3';
+import Web3 from "web3";
 
 export default {
   name: "AnalystDetail",

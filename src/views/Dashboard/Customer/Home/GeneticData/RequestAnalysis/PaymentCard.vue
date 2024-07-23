@@ -110,8 +110,7 @@ import {
   cancelGeneticAnalysisOrderFee } from "@debionetwork/polkadot-provider"
 import { setGeneticAnalysisPaid } from "@/common/lib/polkadot-provider/command/genetic-analysis-orders"
 import { formatUSDTE } from "@/common/lib/price-format.js"
-import Web3 from 'web3'
-
+import Web3 from "web3"
 
 export default {
   name: "PaymentCard",
@@ -152,7 +151,7 @@ export default {
       wallet: (state) => state.substrate.wallet,
       walletBalance: (state) => state.substrate.walletBalance,
       usdtBalance: (state) => state.substrate.usdtBalance,
-      lastEventData: (state) => state.substrate.lastEventData,
+      lastEventData: (state) => state.substrate.lastEventData
     }),
 
     setStyleColor() {
@@ -247,7 +246,8 @@ export default {
       let unit
       currency === "USDT" || currency === "USDT.e" ?unit = "mwei" : unit = "ether"
 
-      const formatedBalance = this..utils.fromWei(String(val.replaceAll(",", "")), unit)
+
+      const formatedBalance = Web3.utils.fromWei(String(val.replaceAll(",", "")), unit)
       return Number(formatedBalance).toLocaleString("en-US")
     },
 

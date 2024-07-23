@@ -136,7 +136,7 @@ import { errorHandler } from "@/common/lib/error-handler"
 import UploadingDialog from "@/common/components/Dialog/UploadingDialog"
 import { downloadFile, uploadFile, getFileUrl } from "@/common/lib/pinata-proxy"
 import store from "@/store"
-import Web3 from 'web3'
+import Web3 from "web3"
 
 
 
@@ -178,7 +178,7 @@ export default {
       wallet: (state) => state.substrate.wallet,
       walletBalance: (state) => state.substrate.walletBalance,
       mnemonicData: (state) => state.substrate.mnemonicData,
-      lastEventData: (state) => state.substrate.lastEventData,
+      lastEventData: (state) => state.substrate.lastEventData
     }),
     disable() {
       const { title, description, file } = this.document

@@ -48,7 +48,8 @@ import { pencilIcon, trashIcon } from "@debionetwork/ui-icons"
 import { queryGeneticDataByOwnerId, removeGeneticData, removeGeneticDataFee} from "@debionetwork/polkadot-provider"
 import { errorHandler } from "@/common/lib/error-handler"
 import ConfirmationDialog from "@/common/components/Dialog/ConfirmationDialog"
-import Web3 from 'web3'
+
+import Web3 from "web3"
 
 
 export default {
@@ -62,7 +63,7 @@ export default {
     ...mapState({
       api: (state) => state.substrate.api,
       wallet: (state) => state.substrate.wallet,
-      lastEventData: (state) => state.substrate.lastEventData,
+      lastEventData: (state) => state.substrate.lastEventData
     })
   },
 
